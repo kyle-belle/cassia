@@ -1,5 +1,6 @@
 import Image from "next/image";
 import PhotoGallery from "./_components/PhotoGallery";
+import { BASE_PATH } from "./values";
 
 const resolutions = [
   { res: 1920, maxWidth: null },
