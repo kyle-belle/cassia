@@ -58,15 +58,17 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: `${BASE_URL}/images/1600/IMG_0521.jpg`,
-        width: 1600,
-        height: 1200,
+        url: `${BASE_URL}/images/1200/IMG_0521.jpg`,
+        secureUrl: `${BASE_URL}/images/1200/IMG_0521.jpg`,
+        width: 1200,
+        height: 900,
         alt: "Caribbean-style villa in Holetown, St. James, Barbados",
       },
       {
-        url: `${BASE_URL}/images/1600/IMG_0536.jpg`,
-        width: 1600,
-        height: 1200,
+        url: `${BASE_URL}/images/1200/IMG_0536.jpg`,
+        secureUrl: `${BASE_URL}/images/1200/IMG_0536.jpg`,
+        width: 1200,
+        height: 900,
         alt: "Caribbean-style villa in Holetown, St. James, Barbados",
       },
     ],
@@ -77,8 +79,8 @@ export const metadata: Metadata = {
     description:
       "Private Caribbean villa in Holetown, St. James, close to beaches, dining, and shopping.",
     images: [
-      `${BASE_URL}/images/1600/IMG_0521.jpg`,
-      `${BASE_URL}/images/1600/IMG_0536.jpg`,
+      `${BASE_URL}/images/1200/IMG_0521.jpg`,
+      `${BASE_URL}/images/1200/IMG_0536.jpg`,
     ],
   },
 };
