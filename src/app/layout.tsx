@@ -28,8 +28,10 @@ export const viewport: Viewport = {
   ],
 };
 
+const BASE_URL = "https://kyle-belle.github.io/cassia";
+
 export const metadata: Metadata = {
-  icons: "/icon.png",
+  icons: `${BASE_URL}/icon.png`,
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
@@ -51,14 +53,20 @@ export const metadata: Metadata = {
       "Villa Cassia | Private Luxury Villa in Holetown, St. James, Barbados",
     description:
       "Experience island comfort on the Barbados West Coast. This Holetown villa offers spacious living, modern amenities, and easy access to beaches, shops, and restaurants.",
-    url: "https://your-villa-website.com",
+    url: `${BASE_URL}`,
     siteName: "Holetown Barbados Villa",
     type: "website",
     images: [
       {
-        url: "https://your-villa-website.com/og-image.jpg",
-        width: 1200,
-        height: 630,
+        url: `${BASE_URL}/images/1600/IMG_0521.jpg`,
+        width: 1600,
+        height: 1200,
+        alt: "Caribbean-style villa in Holetown, St. James, Barbados",
+      },
+      {
+        url: `${BASE_URL}/images/1600/IMG_0536.jpg`,
+        width: 1600,
+        height: 1200,
         alt: "Caribbean-style villa in Holetown, St. James, Barbados",
       },
     ],
@@ -68,7 +76,10 @@ export const metadata: Metadata = {
     title: "Villa Cassia | Luxury Villa in Holetown, St. James | Barbados",
     description:
       "Private Caribbean villa in Holetown, St. James, close to beaches, dining, and shopping.",
-    images: ["https://your-villa-website.com/og-image.jpg"],
+    images: [
+      `${BASE_URL}/images/1600/IMG_0521.jpg`,
+      `${BASE_URL}/images/1600/IMG_0536.jpg`,
+    ],
   },
 };
 

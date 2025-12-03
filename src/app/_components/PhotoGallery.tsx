@@ -34,7 +34,6 @@ const PhotoGallery = ({
         <a
           href={`${BASE_PATH}/images/${highestRes.res}/${p.name}.webp`}
           key={p.name}
-          data-src={`/images/${highestRes.res}/${p.name}.webp`}
           className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5"
         >
           <div className="relative aspect-4/3">
@@ -53,7 +52,6 @@ const PhotoGallery = ({
               )}
               <Image
                 src={`${BASE_PATH}/images/${lowestRes.res}/${p.name}.jpg`}
-                data-src={`${BASE_PATH}/images/${highestRes.res}/${p.name}.webp`}
                 alt={p.alt}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.03] cursor-pointer"
