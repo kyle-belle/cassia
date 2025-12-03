@@ -1,4 +1,8 @@
 name: Deploy Next.js to GH Pages
+permissions:
+  id-token: write
+  contents: read
+
 on:
   push:
     branches: ["main"]
