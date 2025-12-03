@@ -91,9 +91,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth bg-zinc-950">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${playwriteNo.variable} antialiased scroll-smooth`}
+        className={`${geistSans.variable} ${geistMono.variable} ${playwriteNo.variable} antialiased scroll-smooth bg-zinc-950`}
       >
         <main className="min-h-screen bg-zinc-950 text-zinc-50">
           {/* Top bar */}
