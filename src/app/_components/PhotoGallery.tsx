@@ -9,6 +9,7 @@ import "lightgallery/css/lg-thumbnail.css";
 
 import lgThumbnail from "lightgallery/plugins/thumbnail";
 import lgZoom from "lightgallery/plugins/zoom";
+import { BASE_PATH } from "../values";
 
 const PhotoGallery = ({
   photos,
@@ -31,7 +32,7 @@ const PhotoGallery = ({
     >
       {photos.map((p) => (
         <a
-          href={`/images/${highestRes.res}/${p.name}.webp`}
+          href={`${BASE_PATH}/images/${highestRes.res}/${p.name}.webp`}
           key={p.name}
           data-src={`/images/${highestRes.res}/${p.name}.webp`}
           className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5"
@@ -42,7 +43,7 @@ const PhotoGallery = ({
                 formats.map((f) => (
                   <source
                     key={`${w.res}-${f.extension}`}
-                    srcSet={`/images/${w.res}/${p.name}.${f.extension}`}
+                    srcSet={`${BASE_PATH}/images/${w.res}/${p.name}.${f.extension}`}
                     type={f.mime}
                     media={
                       w.maxWidth ? `(max-width: ${w.maxWidth}px)` : undefined
@@ -51,8 +52,8 @@ const PhotoGallery = ({
                 ))
               )}
               <Image
-                src={`/images/${lowestRes.res}/${p.name}.jpg`}
-                data-src={`/images/${highestRes.res}/${p.name}.webp`}
+                src={`${BASE_PATH}/images/${lowestRes.res}/${p.name}.jpg`}
+                data-src={`${BASE_PATH}/images/${highestRes.res}/${p.name}.webp`}
                 alt={p.alt}
                 fill
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.03] cursor-pointer"

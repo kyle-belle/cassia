@@ -51,7 +51,7 @@ export default function Home() {
                 formats.map((f) => (
                   <source
                     key={`${w.res}-${f.extension}`}
-                    srcSet={`/images/${w.res}/${heroImage?.name}.${f.extension}`}
+                    srcSet={`${BASE_PATH}/images/${w.res}/${heroImage?.name}.${f.extension}`}
                     type={f.mime}
                     media={
                       w.maxWidth ? `(max-width: ${w.maxWidth}px)` : undefined
@@ -78,7 +78,7 @@ export default function Home() {
               // </>
             )}
             <Image
-              src={`/images/${lowestRes.res}/${heroImage?.name}.jpg`}
+              src={`${BASE_PATH}/images/${lowestRes.res}/${heroImage?.name}.jpg`}
               alt="Villa hero"
               fill
               priority
