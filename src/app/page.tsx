@@ -1,6 +1,9 @@
+"use client";
 import Image from "next/image";
-import PhotoGallery from "./_components/PhotoGallery";
+import MediaGallery from "./_components/MediaGallery";
 import { BASE_PATH } from "./values";
+import { useMemo } from "react";
+import { useWindowSize } from "usehooks-ts";
 
 const resolutions = [
   { res: 1920, maxWidth: null },
@@ -14,93 +17,104 @@ const formats = [
 const lowestRes = resolutions[resolutions.length - 1];
 const highestRes = resolutions[0];
 
-const photos = [
-  { name: "IMG_0521", hero: true, alt: "Private Pool" },
-  { name: "IMG_0536", alt: "Manicured Garden Walkway" },
-  { name: "IMG_0690", alt: "Private Patio & Seating Area" },
-  { name: "IMG_0734", alt: "Outdoor Dining Area" },
-  { name: "IMG_1031", alt: "Living Room / Family Room" },
-  { name: "IMG_0553", alt: "Kitchen Area" },
-  { name: "IMG_0523", alt: "Pool & Garden View" },
-];
-
-const heroImage = photos.find((p) => p.hero) || photos[0];
-
 const amenities = [
-  "4 bedrooms • Sleeps 8",
+  "2 bedrooms • 2 bathrooms",
   "Private pool",
   "Ocean / hillside view",
   "Fast Wi-Fi",
   "Full kitchen",
-  "A/C in all rooms",
+  "A/C in bedrooms",
   "Parking on-site",
-  "10 min to beach",
+  "5 min to beach",
 ];
 
+const name = "Wayne Niles";
 const email = "wniles@caribsurf.com";
 const phone = "+1 (246) 264-1518";
 
 export default function Home() {
+  const { width } = useWindowSize();
+  const media = useMemo(() => {
+    return [
+      {
+        name: "IMG_0521",
+        hero: width > 640,
+        alt: "Private Pool",
+        type: "IMAGE" as const,
+      },
+      {
+        name: "IMG_4",
+        alt: "Patio With Pool View",
+        type: "IMAGE" as const,
+      },
+      {
+        name: "IMG_0536",
+        alt: "Manicured Garden Walkway",
+        type: "IMAGE" as const,
+      },
+      { name: "IMG_9", alt: "Bedroom", type: "IMAGE" as const },
+      {
+        name: "IMG_0690",
+        alt: "Private Patio & Seating Area",
+        type: "IMAGE" as const,
+      },
+      { name: "IMG_0734", alt: "Outdoor Dining Area", type: "IMAGE" as const },
+      { name: "IMG_8", alt: "Patio View", type: "IMAGE" as const },
+      // { name: "IMG_1031", alt: "Living Room / Family Room", type: "IMAGE" as const },
+      // { name: "IMG_0553", alt: "Kitchen Area", type: "IMAGE" as const },
+      { name: "IMG_11", alt: "Patio with Furnishings", type: "IMAGE" as const },
+      // { name: "IMG_0523", alt: "Pool & Garden View", type: "IMAGE" as const },
+      {
+        name: "VID_1_fixed",
+        hero: width < 640,
+        alt: "Video Tour",
+        type: "VIDEO" as const,
+      },
+    ];
+  }, [width]);
+
+  const heroMedia = useMemo(
+    () => media.find((p) => p.hero) || media[0],
+    [media]
+  );
+
   return (
     <div>
       <section className="relative">
         <div className="absolute inset-0">
-          <picture>
-            {resolutions.map(
-              (w) =>
+          {heroMedia.type === "IMAGE" ? (
+            <picture>
+              {resolutions.map((w) =>
                 formats.map((f) => (
                   <source
                     key={`${w.res}-${f.extension}`}
-                    srcSet={`${BASE_PATH}/images/${w.res}/${heroImage?.name}.${f.extension}`}
+                    srcSet={`${BASE_PATH}/images/${w.res}/${heroMedia?.name}.${f.extension}`}
                     type={f.mime}
                     media={
                       w.maxWidth ? `(max-width: ${w.maxWidth}px)` : undefined
                     }
                   />
                 ))
-              // <>
-              //   <source
-              //     key={w.res}
-              //     srcSet={`/images/${w.res}/IMG_0521.jpg`}
-              //     type="image/jpeg"
-              //     media={
-              //       w.maxWidth ? `(max-width: ${w.maxWidth}px)` : undefined
-              //     }
-              //   />
-              //   <source
-              //     key={w.res}
-              //     srcSet={`/images/${w.res}/IMG_0521.webp`}
-              //     type="image/webp"
-              //     media={
-              //       w.maxWidth ? `(max-width: ${w.maxWidth}px)` : undefined
-              //     }
-              //   />
-              // </>
-            )}
-            <Image
-              src={`${BASE_PATH}/images/${lowestRes.res}/${heroImage?.name}.jpg`}
-              alt="Villa hero"
-              fill
-              priority
-              className="object-cover opacity-70"
+              )}
+              <Image
+                src={`${BASE_PATH}/images/${lowestRes.res}/${heroMedia?.name}.jpg`}
+                alt="Villa hero"
+                fill
+                priority
+                className="object-cover opacity-70"
+              />
+            </picture>
+          ) : (
+            <video
+              src={`${BASE_PATH}/videos/${heroMedia?.name}.mp4`}
+              muted
+              autoPlay
+              loop
+              playsInline
+              controls={false}
+              className="object-cover opacity-70 absolute inset-0 h-full w-full"
             />
-          </picture>
-          {/* <Image
-            src="/images/IMG_0602.GIF"
-            alt="Villa hero"
-            fill
-            priority
-            className="object-cover opacity-70"
-          /> */}
-          {/* <video
-            src="/images/IMG_0602.mp4"
-            muted
-            autoPlay
-            loop
-            playsInline
-            controls={false}
-            className="object-cover opacity-70 absolute inset-0 h-full w-full"
-          /> */}
+          )}
           <div className="absolute inset-0 bg-linear-to-b from-zinc-950/40 via-zinc-950/55 to-zinc-950" />
         </div>
 
@@ -112,7 +126,7 @@ export default function Home() {
             </p>
 
             <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
-              A private villa designed for slow mornings and golden sunsets.
+              A private villa on barbados&apos; prestigious west coast.
             </h1>
             <p className="mt-4 text-zinc-200">
               Photos, details, and an easy way to reach us—everything you need
@@ -135,8 +149,8 @@ export default function Home() {
             </div>
 
             <div className="mt-10 grid grid-cols-2 gap-3 text-sm text-zinc-200 sm:grid-cols-4">
-              <Stat label="Bedrooms" value="4" />
-              <Stat label="Sleeps" value="8" />
+              <Stat label="Bedrooms" value="2" />
+              <Stat label="Bathrooms" value="2" />
               <Stat label="Pool" value="Private" />
               <Stat label="Wi-Fi" value="Fast" />
             </div>
@@ -161,8 +175,8 @@ export default function Home() {
           </a>
         </div>
 
-        <PhotoGallery
-          photos={photos}
+        <MediaGallery
+          media={media}
           resolutions={resolutions}
           formats={formats}
           lowestRes={lowestRes}
@@ -179,8 +193,9 @@ export default function Home() {
                 Stay details
               </h2>
               <p className="mt-3 text-zinc-300">
-                Perfect for families, couples, or small groups—quiet, private,
-                and close to everything.
+                Perfect for couples and family or friends, private, and close to
+                everything, Incl. Massey Supermarket and Limegrove Mall . All
+                the restaurants in Holetown. Duty free shopping and more.
               </p>
 
               <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -243,20 +258,17 @@ export default function Home() {
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
-                <ContactLine label="Email" value={email} />
-                <ContactLine label="Phone / WhatsApp" value={phone} />
+                <ContactLine label="Name" value={name} />
+                <ContactLine label="Email" value={email} type="EMAIL" />
+                <ContactLine
+                  label="Phone / WhatsApp"
+                  value={phone}
+                  type="PHONE"
+                />
                 <ContactLine
                   label="Location"
                   value="Holetown / St. James, Barbados"
                 />
-              </div>
-
-              <div className="mt-8 rounded-3xl border border-white/10 bg-white/5 p-6 text-sm text-zinc-300">
-                <p className="font-medium text-zinc-100">Tip</p>
-                <p className="mt-2">
-                  Include your preferred dates, number of guests, and any
-                  special requests (airport pickup, chef, etc.).
-                </p>
               </div>
             </div>
           </div>
@@ -275,11 +287,33 @@ function Stat({ label, value }: { label: string; value: string }) {
   );
 }
 
-function ContactLine({ label, value }: { label: string; value: string }) {
+function ContactLine({
+  label,
+  value,
+  type,
+}: {
+  label: string;
+  value: string;
+  type?: "EMAIL" | "PHONE" | "TEXT";
+}) {
+  const isEmail = type === "EMAIL";
+  const isPhone = type === "PHONE";
+
   return (
     <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
       <div className="text-xs text-zinc-400">{label}</div>
-      <div className="mt-1 text-sm text-zinc-100">{value}</div>
+      <div className="mt-1 text-sm text-zinc-100">
+        {isEmail || isPhone ? (
+          <a
+            href={isEmail ? `mailto:${value}` : `tel:${value}`}
+            className="underline"
+          >
+            {value}
+          </a>
+        ) : (
+          value
+        )}
+      </div>
     </div>
   );
 }
