@@ -20,7 +20,7 @@ const highestRes = resolutions[0];
 const amenities = [
   "2 bedrooms • 2 bathrooms",
   "Private pool",
-  "Ocean / hillside view",
+  "On the west coast",
   "Fast Wi-Fi",
   "Full kitchen",
   "A/C in bedrooms",
