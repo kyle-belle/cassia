@@ -3,7 +3,7 @@ import Image from "next/image";
 import MediaGallery from "./_components/MediaGallery";
 import { BASE_PATH } from "./values";
 import { useMemo } from "react";
-import { useWindowSize } from "usehooks-ts";
+// import { useWindowSize } from "usehooks-ts";
 
 const resolutions = [
   { res: 1920, maxWidth: null },
@@ -20,8 +20,10 @@ const highestRes = resolutions[0];
 const amenities = [
   "2 bedrooms • 2 bathrooms",
   "Private pool",
-  "On the west coast",
+  "Cable TV",
+  "Dishwasher",
   "Fast Wi-Fi",
+  "On the west coast",
   "Full kitchen",
   "A/C in bedrooms",
   "Parking on-site",
@@ -33,12 +35,12 @@ const email = "wniles@caribsurf.com";
 const phone = "+1 (246) 264-1518";
 
 export default function Home() {
-  const { width } = useWindowSize();
+  // const { width } = useWindowSize();
   const media = useMemo(() => {
     return [
       {
         name: "IMG_0521",
-        hero: width > 640,
+        hero: true,
         alt: "Private Pool",
         type: "IMAGE" as const,
       },
@@ -62,16 +64,23 @@ export default function Home() {
       { name: "IMG_8", alt: "Patio View", type: "IMAGE" as const },
       // { name: "IMG_1031", alt: "Living Room / Family Room", type: "IMAGE" as const },
       // { name: "IMG_0553", alt: "Kitchen Area", type: "IMAGE" as const },
+      { name: "IMG_19", alt: "Pool Area", type: "IMAGE" as const },
+      { name: "IMG_22", alt: "Garden Walkway", type: "IMAGE" as const },
       { name: "IMG_11", alt: "Patio with Furnishings", type: "IMAGE" as const },
+      { name: "IMG_23", alt: "Garden/Patio View", type: "IMAGE" as const },
+      { name: "IMG_29", alt: "Indoor Seating", type: "IMAGE" as const },
+      { name: "IMG_18", alt: "Patio Seating", type: "IMAGE" as const },
+      { name: "IMG_28", alt: "Indoor Dining", type: "IMAGE" as const },
+      { name: "IMG_26", alt: "Entrance Walkway", type: "IMAGE" as const },
       // { name: "IMG_0523", alt: "Pool & Garden View", type: "IMAGE" as const },
-      {
-        name: "VID_1_fixed",
-        hero: width < 640,
-        alt: "Video Tour",
-        type: "VIDEO" as const,
-      },
+      // {
+      //   name: "VID_1_fixed",
+      //   hero: width < 640,
+      //   alt: "Video Tour",
+      //   type: "VIDEO" as const,
+      // },
     ];
-  }, [width]);
+  }, []);
 
   const heroMedia = useMemo(
     () => media.find((p) => p.hero) || media[0],
@@ -101,7 +110,7 @@ export default function Home() {
                 alt="Villa hero"
                 fill
                 priority
-                className="object-cover opacity-70"
+                className="object-cover opacity-80"
               />
             </picture>
           ) : (
@@ -153,6 +162,8 @@ export default function Home() {
               <Stat label="Bathrooms" value="2" />
               <Stat label="Pool" value="Private" />
               <Stat label="Wi-Fi" value="Fast" />
+              <Stat label="Entertainment" value="Cable TV" />
+              <Stat label="Cleaning" value="Dishwasher" />
             </div>
           </div>
         </div>
