@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   title:
     "Villa Cassia | Luxury Villa in Holetown, St. James | Barbados Vacation Rental",
   description:
-    "Book a private villa in Holetown, St. James, Barbados. Steps from beaches, dining, and shopping. Perfect for families, couples, and long-term stays.",
+    "Luxury private villa for rent in Holetown, St. James, Barbados. Steps from beaches, dining, and shopping. Perfect for families, couples, and long-term stays.",
   keywords: [
     "Barbados villa",
     "Holetown vacation rental",
@@ -47,6 +47,15 @@ export const metadata: Metadata = {
     "Barbados accommodation",
     "Luxury villa Barbados",
     "West Coast Barbados",
+    "villa for rent, holetown",
+    "caribbean villa rental",
+    "beachfront villa Barbados",
+    "family villa Barbados",
+    "couples villa Barbados",
+    "long-term villa rental Barbados",
+    "private villa holetown",
+    "villa with amenities Barbados",
+    "holiday villa St. James",
   ],
   openGraph: {
     title:
